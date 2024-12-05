@@ -1,12 +1,14 @@
 
+
 const NewProfile = ({data}) => {
 
-  const {firstName,lastName,age,gender,about,skill}=data;
+  const {firstName,lastName,age,gender,about,skill,profile}=data;
+  console.log("profile",profile)
   return (
-    <div className="card bg-white h-[513px] max-w-xs  rounded-lg overflow-hidden transform transition duration-300">
+    <div className="card bg-white h-[423px] max-w-xs  rounded-lg overflow-hidden transform transition duration-300">
         <figure>
           <img
-            src="https://images.unsplash.com/photo-1507499036636-f716246c2c23?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D"
+            src={profile}
             alt="profile"
             className="w-full h-40 object-cover"
           />

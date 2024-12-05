@@ -2,34 +2,33 @@ import { useState } from "react";
 import axios from "axios";
 import { EDIT_URL } from "./utils/constant";
 import { useDispatch } from "react-redux";
-import {addUser} from './utils/userSlice.js'
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { addUser } from "./utils/userSlice.js";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import NewProfile from "./NewProfile.jsx";
 
+const EditProfile = ({ user }) => {
+  const dispatch = useDispatch();
+  const [firstName, setFirstName] = useState(user?.firstName || "");
+  const [lastName, setLastName] = useState(user?.lastName || "");
+  const [age, setAge] = useState(user?.age || "");
+  const [gender, setGender] = useState(user?.gender || "");
+  const [about, setAbout] = useState(user?.about || "");
+  const [skill, setSkills] = useState(user?.skill || []);
+  const [profile, setProfile] = useState(user?.profile || "");
+  const [error, setError] = useState("");
 
-
-const EditProfile = ({user}) => {
-  
-  const dispatch=useDispatch()
-  const [firstName, setFirstName] = useState(user?.firstName);
-  const [lastName, setLastName] = useState(user.LastName);
-  const [age, setAge] = useState(user.age);
-  const [gender, setGender] = useState(user.gender);
-  const [about, setAbout] = useState(user.about);
-  const [skill, setSkills] = useState(user.skill);
-  const [profile,setProfile]=useState(user.profile)
-  const [error,setError]=useState('');
- 
+  const handleSkillChange = (e) => {
+    setSkills(e.target.value.split(",").map((s) => s.trim()));
+  };
 
   const handleEdit = async () => {
-
-
-    const toastMessage=()=>{
-        toast('profile updated successfully')
-    }
-    try {
     
+    const toastMessage = () => {
+      toast(`${firstName} Profile Updated Successfully`);
+    };
+
+    try {
       const res = await axios.patch(
         EDIT_URL,
         {
@@ -43,20 +42,19 @@ const EditProfile = ({user}) => {
         },
         { withCredentials: true }
       );
-      console.log("Response received:", res.data);
+      
       dispatch(addUser(res?.data?.data));
+      toastMessage();
     } catch (err) {
       console.error("Error in handleEdit:", err.message);
       console.error("Error details:", err.response?.data);
-      setError(err.response.data);
-
+      setError(err.response?.data);
     }
-    toastMessage()
   };
-  
 
   return (
-    <div className="flex justify-center items-center mt-10   gap-5 ">
+    <div className="flex justify-center items-center mt-10 gap-5">
+
       <div className="card bg-base-300 text-white w-76 shadow-lg rounded-lg">
         <div className="card-body flex flex-col gap-3 rounded-lg bg-gradient-to-l from-white to-black">
           <h2 className="card-title">EDIT PROFILE!!</h2>
@@ -89,7 +87,7 @@ const EditProfile = ({user}) => {
             <input
               type="text"
               placeholder="Gender"
-              className="w-full p-2  rounded-md"
+              className="w-full p-2 rounded-md"
               value={gender}
               onChange={(e) => setGender(e.target.value)}
             />
@@ -99,8 +97,8 @@ const EditProfile = ({user}) => {
             placeholder="Enter Skills"
             className="w-full p-2 rounded-md"
             rows="3"
-            value={skill}
-            onChange={(e) => setSkills(e.target.value)}
+            value={skill.join(", ")} 
+            onChange={handleSkillChange}
           />
           <textarea
             placeholder="About Yourself"
@@ -113,26 +111,23 @@ const EditProfile = ({user}) => {
             type="text"
             placeholder="Enter Profile Url"
             value={profile}
-            onChange={(e)=>setProfile(e.target.value)}
+            onChange={(e) => setProfile(e.target.value)}
             className="w-full p-2 rounded-md"
           />
 
           <button
-            className="text-white w-20 ml-2 bg-black border-orange-600  font-medium rounded-md text-md px-5 py-2.5 text-center me-2 mb-2"
+            className="text-white w-20 ml-2 bg-black border-orange-600 font-medium rounded-md text-md px-5 py-2.5 text-center me-2 mb-2"
             onClick={handleEdit}
-            
           >
             Save
-            <ToastContainer />
           </button>
+          <ToastContainer />
         </div>
-        {error&&<p>{error}</p>}
+        {error && <p className="text-red-500">{error}</p>}
       </div>
 
-      <NewProfile data={{firstName,lastName,age,gender,skill,about,profile}} />
-    
+      <NewProfile data={{ firstName, lastName, age, gender, skill, about, profile }} />
     </div>
-    
   );
 };
 

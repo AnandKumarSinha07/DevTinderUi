@@ -1,5 +1,27 @@
+import { useEffect } from "react";
+import axios from 'axios'
+import { SEND_REQUEST } from "./utils/constant";
+
 const UserCard = ({ data }) => {
-    const { firstName, lastName, about,  age, gender } = data;
+    const { firstName, lastName, about,  age, gender ,status,_id} = data;
+    console.log("status,_id",status,_id)
+
+    const handleSendRequest=async(status,_id)=>{
+       try{
+          const req=await axios.post(SEND_REQUEST+"/"+status+"/"+_id,{},{withCredentials:true})
+          console.log(req)
+       }
+       catch(err){
+          console.log(err);
+       }
+    }
+
+
+    useEffect(()=>{
+       handleSendRequest()
+    },[])
+
+
   
     return (
       <div className="card bg-white w-72 max-w-xs shadow-md shadow-white rounded-lg overflow-hidden transform transition duration-300 hover:scale-105">

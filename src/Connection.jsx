@@ -24,6 +24,28 @@ const Connection = () => {
     FetConnection();
   }, []);
 
+  if (connection.length === 0) {
+    return (
+      <div className="flex justify-center items-center mt-60">
+        <a href="#my_modal_8" className="btn text-xl">
+          open connection 😊
+        </a>
+
+      
+        <div className="modal" role="dialog" id="my_modal_8">
+          <div className="modal-box">
+            <h3 className="text-lg font-bold">Oops!!</h3>
+            <p className="py-4">You Have No Connection Request Explore More</p>
+            <div className="modal-action">
+              <a href="#" className="btn">
+                Okay
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
   if (!connection) {
     return (
       <div>
