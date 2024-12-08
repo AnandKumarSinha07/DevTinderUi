@@ -1,8 +1,11 @@
 import { useEffect } from "react";
-import { USER_CONNECTION } from "./utils/constant";
 import axios from "axios";
 import { addConnection } from "./utils/connectionSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { USER_CONNECTION } from "./utils/constant";
+
+
+
 
 const Connection = () => {
   const connection = useSelector((store) => store.connections);
@@ -11,7 +14,6 @@ const Connection = () => {
   const FetConnection = async () => {
     try {
       const res = await axios.get(USER_CONNECTION, { withCredentials: true });
-      console.log("res", res?.data?.data);
       dispatch(addConnection(res?.data?.data));
     } catch (err) {
       console.log(err);
@@ -23,6 +25,18 @@ const Connection = () => {
   useEffect(() => {
     FetConnection();
   }, []);
+
+  if (!connection) {
+    return (
+      <div className="flex justify-center items-center">
+        <span className="loading loading-ring loading-xs"></span>
+        <span className="loading loading-ring loading-sm"></span>
+        <span className="loading loading-ring loading-md"></span>
+        <span className="loading loading-ring loading-lg"></span>
+      </div>
+    );
+  }
+
 
   if (connection.length === 0) {
     return (
@@ -46,17 +60,8 @@ const Connection = () => {
       </div>
     );
   }
-  if (!connection) {
-    return (
-      <div>
-        <span className="loading loading-ring loading-xs"></span>
-        <span className="loading loading-ring loading-sm"></span>
-        <span className="loading loading-ring loading-md"></span>
-        <span className="loading loading-ring loading-lg"></span>
-      </div>
-    );
-  }
 
+ 
   return (
     <div className="flex flex-col justify-center items-center my-10 space-y-2">
       <h1 className="font-bold text-3xl text-white mb-6">Connection Details</h1>

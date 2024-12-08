@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux"
 import {Link, useNavigate} from 'react-router-dom'
-import { LOGOUT_URL } from "./utils/constant"
 import { removeUser } from "./utils/userSlice"
 import axios from 'axios'
+import { LOGOUT_URL } from "./utils/constant"
 
 
 

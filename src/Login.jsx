@@ -20,16 +20,13 @@ function Login() {
 
   const handleLogin = async () => {
     try {
-      const res = await axios.post(
-        LOGIN_URL,
+      const res = await axios.post(LOGIN_URL,
         {
           email,
           password,
         },
         { withCredentials: true }
       );
-
-      console.log("data is ", res.data);
       dispatch(addUser(res.data));
       navigate("/");
     } catch (err) {
@@ -46,7 +43,7 @@ function Login() {
         )
         dispatch(addUser(res.data.data))
         navigate("/profile")
-        console.log("Response is ",res?.data?.data);
+        
     }catch(err){
       console.log(err);
       setError(err?.response?.data || "Something Went Wrong");
@@ -64,20 +61,20 @@ function Login() {
 
               <input
                   type="text"
-            placeholder="Enter FirstName"
-            className="w-full p-2 rounded-md"
-            value={firstName}
+                  placeholder="Enter FirstName"
+                  className="w-full p-2 rounded-md"
+                  value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
               />
 
               <h2 className="card-title">Enter LastName!</h2>
 
                <input
-                 type="text"
-                 placeholder="Enter lastName"
-                 className="w-full p-2 rounded-md"
-                 value={LastName }
-                 onChange={(e) => setLastName(e.target.value)}
+                  type="text"
+                  placeholder="Enter lastName"
+                  className="w-full p-2 rounded-md"
+                  value={LastName }
+                  onChange={(e) => setLastName(e.target.value)}
                  />
             </>
          }
@@ -103,11 +100,11 @@ function Login() {
 
           {error && <p className="text-red-500 ml-1">{error}</p>}
           <p
-            className="cursor-pointer text-lg"
+            className="cursor-pointer text-lg hover"
             onClick={()=>setislogedin(value=>!value)}
-          > {isLogedin?"New User ? Signup Here":"Exisiting User? login Here"}</p>
+          > {isLogedin?"New User ? Signup Here":"Exisiting User ? Login Here"}</p>
           <button
-            className=" w-20 ml-2  bg-white text-black font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+            className=" w-20 ml-2   bg-white text-black font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
             onClick={isLogedin?handleLogin:handleSignup}
           >
            {isLogedin?"Login":"Signup"}

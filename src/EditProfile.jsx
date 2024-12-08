@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { EDIT_URL } from "./utils/constant";
+import { EDIT_URL } from "./utils/constant.js";
 import { useDispatch } from "react-redux";
 import { addUser } from "./utils/userSlice.js";
 import { ToastContainer, toast } from "react-toastify";
@@ -9,7 +9,7 @@ import NewProfile from "./NewProfile.jsx";
 
 const EditProfile = ({ user }) => {
   const dispatch = useDispatch();
-  const [firstName, setFirstName] = useState(user?.firstName || "");
+  const [firstName, setFirstName] = useState(user?.firstName || "User");
   const [lastName, setLastName] = useState(user?.lastName || "");
   const [age, setAge] = useState(user?.age || "");
   const [gender, setGender] = useState(user?.gender || "");
@@ -18,12 +18,7 @@ const EditProfile = ({ user }) => {
   const [profile, setProfile] = useState(user?.profile || "");
   const [error, setError] = useState("");
 
-  const handleSkillChange = (e) => {
-    setSkills(e.target.value.split(",").map((s) => s.trim()));
-  };
-
   const handleEdit = async () => {
-    
     const toastMessage = () => {
       toast(`${firstName} Profile Updated Successfully`);
     };
@@ -42,19 +37,17 @@ const EditProfile = ({ user }) => {
         },
         { withCredentials: true }
       );
-      
+
+      console.log("Answer is ", res.data.data);
       dispatch(addUser(res?.data?.data));
       toastMessage();
     } catch (err) {
-      console.error("Error in handleEdit:", err.message);
-      console.error("Error details:", err.response?.data);
-      setError(err.response?.data);
+      setError(err.response?.data?.message || "An unexpected error occurred");
     }
   };
 
   return (
     <div className="flex justify-center items-center mt-10 gap-5">
-
       <div className="card bg-base-300 text-white w-76 shadow-lg rounded-lg">
         <div className="card-body flex flex-col gap-3 rounded-lg bg-gradient-to-l from-white to-black">
           <h2 className="card-title">EDIT PROFILE!!</h2>
@@ -94,11 +87,11 @@ const EditProfile = ({ user }) => {
           </div>
 
           <textarea
-            placeholder="Enter Skills"
+            placeholder="Enter Skills (comma-separated)"
             className="w-full p-2 rounded-md"
             rows="3"
-            value={skill.join(", ")} 
-            onChange={handleSkillChange}
+            value={skill.join(",")} 
+            onChange={(e) => setSkills(e.target.value.split(","))}
           />
           <textarea
             placeholder="About Yourself"

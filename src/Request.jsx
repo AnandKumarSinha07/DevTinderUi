@@ -8,6 +8,11 @@ import { toast, ToastContainer } from "react-toastify"
 
 
 const Request = () => {
+
+
+  const toastMessage=(status)=>{
+    toast(`${status} Your Request`)
+  }
   const dispatch = useDispatch();  
   const request = useSelector(store => store.requests)
  
@@ -19,8 +24,8 @@ const Request = () => {
             {withCredentials:true}
           );
           console.log(res);
-          toast("Request Accepted")
-         dispatch(removeRequest(_id))
+          toastMessage(status)
+          dispatch(removeRequest(_id))
       }
       catch(err){
         console.log("Error in the api of review post request",err)
@@ -56,6 +61,10 @@ const Request = () => {
   }
 
   return (
+    
+    <>
+    <ToastContainer/>
+    
     <div className="flex flex-col justify-center items-center  gap-2">
 
       <h1 className="font-bold text-3xl text-white mb-6">Request Details</h1>
@@ -93,7 +102,6 @@ const Request = () => {
                  onClick={()=>reviewRequest("rejected",_id)}
                  
                 >Reject
-                  <ToastContainer/>
                 </button>
               </div>
             </div>
@@ -101,6 +109,7 @@ const Request = () => {
         );
       })}
     </div>
+    </>
   );
 };
 

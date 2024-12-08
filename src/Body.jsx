@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom"
-import { PROFILE_URL } from "./utils/constant"
+import { PROFILE_URL } from "./utils/constant";
 import { useEffect } from "react"
 import axios from 'axios';
 import Navbar from "./Navbar"

@@ -1,9 +1,10 @@
-import { FEED_URL } from "./utils/constant";
+
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { addFeed } from "./utils/feedSlice";
 import { useEffect } from "react";
 import UserCard from "./UserCard";
+import { FEED_URL } from "./utils/constant";
 
 function Feed() {
   const dispatch = useDispatch();
@@ -11,7 +12,6 @@ function Feed() {
   
 
   const fetchFeedData = async () => {
-    if (feed?.user?.length > 0) return; 
 
     try {
       const res = await axios.get(FEED_URL, { withCredentials: true });
@@ -25,12 +25,12 @@ function Feed() {
     fetchFeedData(); 
   }, []);
 
-  return feed?.user?.[0] ? (
+  return feed.length>0? (
     <div className="flex justify-center items-center mt-10 pb-10">
-      <UserCard data={feed.user[0]} />  
+      <UserCard data={feed[0]} />  
     </div>
   ) : (
-    <p>Loading...</p>
+    <p className="flex  text-3xl justify-center mt-20 items-center">No User On Feed</p>
   );
 }
 
