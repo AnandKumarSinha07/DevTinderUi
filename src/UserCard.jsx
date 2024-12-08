@@ -10,7 +10,7 @@ const UserCard = ({ data }) => {
 
     console.log("data in the usercard is ",data)
     const { firstName, lastName, about,  age, gender,_id,profile} = data;
-    console.log("profile is ",profile)
+    
     const dispatch=useDispatch();
 
     const toastMessage=(status)=>{
@@ -23,8 +23,7 @@ const UserCard = ({ data }) => {
           const req=await axios.post(
             SEND_REQUEST+"/"+status+"/"+_id,{},{withCredentials:true}
           )
-          dispatch(removeFeed(_id));   
-          console.log(req)
+          dispatch(removeFeed(_id));  
           toastMessage(status);
         } 
        catch(err){
