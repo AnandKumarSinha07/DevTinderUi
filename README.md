@@ -48,6 +48,13 @@
   -hook and if not then navigate the user to login page okay   
 
 
+-- Signup on the aws
+-- create a ec2 instance
+-- make changes in the secret key
+-- ssh -i "devTinder-secret.pem" ubuntu@ec2-52-62-196-90.ap-southeast-2.compute.amazonaws.com 
+-- install node version
+
+
 
 
 
