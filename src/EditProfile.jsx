@@ -40,12 +40,16 @@ const EditProfile = ({ user }) => {
        if(age<18){
         setError("Please Enter age more than 18")
        }
+       if(gender!=='Male' && gender!="female" && gender!='others' && gender!='male' && gender!='Female'){
+           setError("Please Enter Gender as Male or male , Female or female");
+       }
 
       console.log("Answer is ", res.data.data);
       dispatch(addUser(res?.data?.data));
       toastMessage();
     } catch (err) {
       setError(err.response?.data?.message || "An unexpected error occurred");
+      return;
     }
   };
 
@@ -120,13 +124,13 @@ const EditProfile = ({ user }) => {
       />
 
       <button
-  onClick={handleEdit}
-  className="w-full py-3 rounded-xl font-semibold text-lg 
-  bg-gradient-to-r from-black via-gray-600 to-white 
-  text-white hover:opacity-90 transition duration-300 shadow-lg shadow-gray-500/30"
->
-  Save Changes ✨
-</button>
+        onClick={handleEdit}
+        className="w-full py-3 rounded-xl font-semibold text-lg 
+        bg-gradient-to-r from-black via-gray-600 to-white 
+       text-white hover:opacity-90 transition duration-300 shadow-lg shadow-gray-500/30"
+       >
+        Save Changes ✨
+    </button>
 
       {error && (
         <p className="text-red-400 mt-3 text-sm font-medium">

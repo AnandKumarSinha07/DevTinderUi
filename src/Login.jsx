@@ -123,11 +123,7 @@ function Login() {
           <label className="block text-sm text-gray-300">
             Password
           </label>
-          {isLogedin && (
-            <span className="text-sm text-blue-500 cursor-pointer hover:underline">
-              Forgot password?
-            </span>
-          )}
+         
         </div>
         <input
           type="password"
