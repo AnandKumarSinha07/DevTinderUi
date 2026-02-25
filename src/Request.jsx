@@ -50,7 +50,7 @@ const Request = () => {
   
   if (!request || request.length === 0) {
     return (
-      <div className="flex   items-center justify-center mt-[230px]">
+      <div className="flex gap-3  items-center justify-center mt-[230px]">
         <h1 className="text-2xl   text-white">No Request Found </h1>
         <span className="loading loading-ring loading-xs"></span>
         <span className="loading loading-ring loading-sm"></span>
