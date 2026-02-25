@@ -39,15 +39,15 @@ function Body() {
   },[])
 
 
-
-
   return (
-    <div>
-        <Navbar/>
-        <Outlet/>
-        <Footer/>
-    </div>
-  )
+  <div className="min-h-screen flex flex-col bg-gradient-to-br from-black via-[#020000] to-[#0a0000] text-white">
+    <Navbar />
+    <main className="flex-1 pt-16">
+      <Outlet />
+    </main>
+    <Footer />
+  </div>
+);
 }
 
 export default Body

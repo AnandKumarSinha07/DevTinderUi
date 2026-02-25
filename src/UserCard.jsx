@@ -39,35 +39,59 @@ const UserCard = ({ data }) => {
   
     return (
       <>
-      <ToastContainer toastStyle={{ backgroundColor: "green" }}/>
-      <div className="card bg-white w-72 max-w-xs shadow-md shadow-white rounded-lg overflow-hidden transform transition duration-300 hover:scale-105">
-        <figure>
-          <img
-            src={profile}
-            alt="profile"
-            className="w-full h-40 object-cover"
-          />
-        </figure>
-        <div className="p-4">
-          <h2 className="text-3xl font-semibold text-gray-800">{firstName} {lastName}</h2>
-          <p className="text-md text-gray-600 mt-2">{about}</p>
-          <p className="text-xs font-medium text-gray-500 mt-2">Age: {age} | Gender: {gender}</p>
-          <div className="mt-4 flex gap-2">
-            <button className="  bg-gradient-to-r from-black to-blue-600 p-2 mr-2 rounded-md text-slate-200 w-22"
-             onClick={()=>handleSendRequest("interested",_id)}
-            >Interested</button>
-            <button className="  bg-gradient-to-r from-black to-red-500 p-2 rounded-md text-slate-200 w-20"
-              onClick={()=>handleSendRequest("ignored",_id)}  
-            >Ignore
-             
-            </button>
-            
-          </div>
-          
-        </div>
-        
+  <ToastContainer />
+
+  <div className="bg-gradient-to-br from-[#0f172a] to-[#1e293b] 
+                  border border-gray-800 
+                  w-80 max-w-sm 
+                  rounded-2xl 
+                  shadow-2xl 
+                  overflow-hidden 
+                  transform transition duration-300 hover:scale-105">
+
+    <figure>
+      <img
+        src={profile}
+        alt="profile"
+        className="w-full h-56 object-cover"
+      />
+    </figure>
+
+    <div className="p-6 text-white">
+      <h2 className="text-2xl font-semibold">
+        {firstName} {lastName}
+      </h2>
+
+      <p className="text-gray-400 mt-2 text-sm">
+        {about}
+      </p>
+
+      <p className="text-xs text-gray-500 mt-3">
+        Age: {age} | Gender: {gender}
+      </p>
+
+      <div className="mt-6 flex gap-3">
+        <button
+          className="flex-1 bg-gradient-to-r from-blue-600 to-indigo-600 
+                     hover:from-blue-500 hover:to-indigo-500 
+                     transition text-white py-2 rounded-lg shadow-md"
+          onClick={() => handleSendRequest("interested", _id)}
+        >
+          Interested
+        </button>
+
+        <button
+          className="flex-1 bg-gradient-to-r from-red-600 to-pink-600 
+                     hover:from-red-500 hover:to-pink-500 
+                     transition text-white py-2 rounded-lg shadow-md"
+          onClick={() => handleSendRequest("ignored", _id)}
+        >
+          Ignore
+        </button>
       </div>
-      </>
+    </div>
+  </div>
+</>
     );
   };
   

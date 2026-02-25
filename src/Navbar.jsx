@@ -26,7 +26,6 @@ function Navbar() {
 
 
 
-
   return (
     <div className="navbar bg-info-content w-[100%] ">
 

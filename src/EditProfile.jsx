@@ -50,81 +50,99 @@ const EditProfile = ({ user }) => {
   };
 
   return (
-    <div className="flex justify-center items-center mt-10 gap-5">
-      <div className="card bg-base-300 text-white w-76 shadow-lg rounded-lg">
-        <div className="card-body flex flex-col gap-3 rounded-lg bg-gradient-to-l from-white to-black">
-          <h2 className="card-title">EDIT PROFILE!!</h2>
+  <div className="flex flex-col lg:flex-row gap-10 w-full max-w-6xl">
 
-          <div className="flex gap-4">
-            <input
-              type="text"
-              placeholder="First Name"
-              className="w-full p-2 rounded-md"
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
-            />
-            <input
-              type="text"
-              placeholder="Last Name"
-              className="w-full p-2 rounded-md"
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
-            />
-          </div>
+    {/* LEFT SIDE - EDIT FORM */}
+    <div className="w-full lg:w-1/2 backdrop-blur-xl bg-white/10 border border-white/20 shadow-2xl rounded-2xl p-8 text-white transition-all duration-300 hover:scale-[1.02]">
 
-          <div className="flex gap-4">
-            <input
-              type="number"
-              placeholder="Age"
-              className="w-full p-2 rounded-md"
-              value={age}
-              onChange={(e) => setAge(e.target.value)}
-            />
-            <input
-              type="text"
-              placeholder="Gender"
-              className="w-full p-2 rounded-md"
-              value={gender}
-              onChange={(e) => setGender(e.target.value)}
-            />
-          </div>
+      <h2 className="text-2xl font-bold mb-6 bg-white bg-clip-text text-transparent">
+        Edit Your Profile 🚀
+      </h2>
 
-          <textarea
-            placeholder="Enter Skills (comma-separated)"
-            className="w-full p-2 rounded-md"
-            rows="3"
-            value={skill.join(",")} 
-            onChange={(e) => setSkills(e.target.value.split(","))}
-          />
-          <textarea
-            placeholder="About Yourself"
-            className="w-full p-2 rounded-md"
-            rows="3"
-            value={about}
-            onChange={(e) => setAbout(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="Enter Profile Url"
-            value={profile}
-            onChange={(e) => setProfile(e.target.value)}
-            className="w-full p-2 rounded-md"
-          />
-
-          <button
-            className="text-white w-20 ml-2 bg-black border-orange-600 font-medium rounded-md text-md px-5 py-2.5 text-center me-2 mb-2"
-            onClick={handleEdit}
-          >
-            Save
-          </button>
-          <ToastContainer />
-        </div>
-        {error && <p className="text-red-500">{error}</p>}
+      {/* Name */}
+      <div className="flex gap-4 mb-4">
+        <input
+          type="text"
+          placeholder="First Name"
+          className="inputStyle"
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Last Name"
+          className="inputStyle"
+          value={lastName}
+          onChange={(e) => setLastName(e.target.value)}
+        />
       </div>
 
-      <NewProfile data={{ firstName, lastName, age, gender, skill, about, profile }} />
+      {/* Age + Gender */}
+      <div className="flex gap-4 mb-4">
+        <input
+          type="number"
+          placeholder="Age"
+          className="inputStyle"
+          value={age}
+          onChange={(e) => setAge(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Gender"
+          className="inputStyle"
+          value={gender}
+          onChange={(e) => setGender(e.target.value)}
+        />
+      </div>
+
+      <textarea
+        placeholder="Enter Skills (comma separated)"
+        className="inputStyle mb-4"
+        rows="2"
+        value={skill.join(",")}
+        onChange={(e) => setSkills(e.target.value.split(","))}
+      />
+
+      <textarea
+        placeholder="About Yourself"
+        className="inputStyle mb-4"
+        rows="3"
+        value={about}
+        onChange={(e) => setAbout(e.target.value)}
+      />
+
+      <input
+        type="text"
+        placeholder="Profile Image URL"
+        className="inputStyle mb-6"
+        value={profile}
+        onChange={(e) => setProfile(e.target.value)}
+      />
+
+      <button
+  onClick={handleEdit}
+  className="w-full py-3 rounded-xl font-semibold text-lg 
+  bg-gradient-to-r from-black via-gray-600 to-white 
+  text-white hover:opacity-90 transition duration-300 shadow-lg shadow-gray-500/30"
+>
+  Save Changes ✨
+</button>
+
+      {error && (
+        <p className="text-red-400 mt-3 text-sm font-medium">
+          {error}
+        </p>
+      )}
+
+      <ToastContainer position="top-right" autoClose={2000} />
     </div>
-  );
+
+    {/* RIGHT SIDE - LIVE PREVIEW */}
+    <NewProfile
+      data={{ firstName, lastName, age, gender, skill, about, profile }}
+    />
+  </div>
+);
 };
 
 export default EditProfile;

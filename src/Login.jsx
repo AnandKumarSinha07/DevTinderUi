@@ -57,68 +57,136 @@ function Login() {
   }
 
   return (
-    <div className="flex justify-center  items-center mt-6 ">
-      <div className="card bg-base-300 text-white  w-96 shadow-lg rounded-lg">
-        <div className="card-body flex flex-col gap-4  rounded-lg   bg-gradient-to-l from-white to-black">
-
-         {!isLogedin &&
-            <> 
-               <h2 className="card-title">Enter FirstName!</h2>
-
-              <input
-                  type="text"
-                  placeholder="Enter FirstName"
-                  className="w-full p-2 rounded-md"
-                  value={firstName}
-                  onChange={(e) => setFirstName(e.target.value)}
-              />
-
-              <h2 className="card-title">Enter LastName!</h2>
-
-               <input
-                  type="text"
-                  placeholder="Enter lastName"
-                  className="w-full p-2 rounded-md"
-                  value={LastName }
-                  onChange={(e) => setLastName(e.target.value)}
-                 />
-            </>
-         }
-         
-          <h2 className="card-title">Enter Email!</h2>
-
-          <input
-            type="email"
-            placeholder="Enter email"
-            className="w-full p-2 rounded-md"
-            value={email}
-            onChange={(e) => SetEmail(e.target.value)}
-          />
-
-          <h2 className="card-title">Enter Password!</h2>
-          <input
-            type="password"
-            placeholder="Enter Password"
-            className="w-full p-2 rounded-md"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-
-          {error && <p className="text-red-500 ml-1 text-xl">{error}</p>}
-          <p
-            className="cursor-pointer text-lg hover"
-            onClick={()=>setislogedin(value=>!value)}
-          > {isLogedin?"New User ? Signup Here":"Exisiting User ? Login Here"}</p>
-          <button
-            className=" w-20 ml-2   bg-white text-black font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
-            onClick={isLogedin?handleLogin:handleSignup}
-          >
-           {isLogedin?"Login":"Signup"}
-          </button>
-        </div>
+  <div className="min-h-screen flex items-center justify-center bg-black px-4">
+    <div className="w-full max-w-md bg-[#010408ab] border border-gray-800 rounded-2xl p-8 shadow-2xl">
+      
+      {/* Heading */}
+      <div className="text-center mb-8">
+        <h1 className="text-3xl font-semibold text-white">
+          {isLogedin ? "Welcome back" : "Create account"}
+        </h1>
+        <p className="text-gray-400 mt-2">
+          {isLogedin
+            ? "Sign in to continue to your account"
+            : "Sign up to get started"}
+        </p>
       </div>
+
+      {/* Signup fields */}
+      {!isLogedin && (
+        <div className="space-y-4 mb-4">
+          <div>
+            <label className="block text-sm text-gray-300 mb-2">
+              First Name
+            </label>
+            <input
+              type="text"
+              placeholder="Enter first name"
+              className="w-full bg-[#1e293b] text-white border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm text-gray-300 mb-2">
+              Last Name
+            </label>
+            <input
+              type="text"
+              placeholder="Enter last name"
+              className="w-full bg-[#1e293b] text-white border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              value={LastName}
+              onChange={(e) => setLastName(e.target.value)}
+            />
+          </div>
+        </div>
+      )}
+
+      {/* Email */}
+      <div className="mb-4">
+        <label className="block text-sm text-gray-300 mb-2">
+          Email
+        </label>
+        <input
+          type="email"
+          placeholder="you@example.com"
+          className="w-full bg-[#1e293b] text-white border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          value={email}
+          onChange={(e) => SetEmail(e.target.value)}
+        />
+      </div>
+
+      {/* Password */}
+      <div className="mb-6">
+        <div className="flex justify-between items-center mb-2">
+          <label className="block text-sm text-gray-300">
+            Password
+          </label>
+          {isLogedin && (
+            <span className="text-sm text-blue-500 cursor-pointer hover:underline">
+              Forgot password?
+            </span>
+          )}
+        </div>
+        <input
+          type="password"
+          placeholder="Enter your password"
+          className="w-full bg-[#1e293b] text-white border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+      </div>
+
+      {/* Error */}
+      {error && (
+        <p className="text-red-500 text-sm mb-4">{error}</p>
+      )}
+
+      {/* Button */}
+      <button
+        className="w-full bg-white text-black font-medium rounded-lg py-2.5 hover:bg-gray-200 transition"
+        onClick={isLogedin ? handleLogin : handleSignup}
+      >
+        {isLogedin ? "Sign In" : "Sign Up"}
+      </button>
+
+      {/* Divider */}
+      <div className="flex items-center my-6">
+        <div className="flex-1 h-px bg-gray-700"></div>
+        <span className="px-3 text-gray-400 text-sm">or</span>
+        <div className="flex-1 h-px bg-gray-700"></div>
+      </div>
+
+      {/* Toggle */}
+      <p
+        className="text-center text-gray-400 text-sm cursor-pointer"
+        onClick={() => setislogedin((value) => !value)}
+      >
+        {isLogedin ? (
+          <>
+            Don't have an account?{" "}
+            <span className="text-blue-500 hover:underline">
+              Sign Up
+            </span>
+          </>
+        ) : (
+          <>
+            Already have an account?{" "}
+            <span className="text-blue-500 hover:underline">
+              Sign In
+            </span>
+          </>
+        )}
+      </p>
+
+      {/* Terms */}
+      <p className="text-center text-xs text-gray-500 mt-6">
+        By continuing, you agree to our Terms of Service and Privacy Policy
+      </p>
     </div>
-  );
+  </div>
+);
 }
 
 export default Login;

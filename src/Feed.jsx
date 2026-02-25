@@ -29,19 +29,35 @@ function Feed() {
     fetchFeedData(); 
   }, []);
 
-  return feed.length>0? (
-    <div className="flex justify-center items-center mt-10 pb-10 bg-zinc-50">
-      <UserCard data={feed[0]} />  
-    </div>
-  ) : (
-    <div className="flex flex-col items-center justify-center gap-7 ">
-    <p className="flex  text-3xl justify-center mt-20 items-center">
-       Oops Sorry !! No User On Feed
+ return feed.length > 0 ? (
+  <div className="flex justify-center items-center 
+                  min-h-[70vh] 
+                  bg-gradient-to-br from-black via-[#0a0f1c] to-[#111827] 
+                  px-4">
+
+    <UserCard data={feed[0]} />
+
+  </div>
+) : (
+  <div className="flex flex-col items-center justify-center 
+                  min-h-[70vh] 
+                  text-white 
+                  bg-gradient-to-br from-black via-[#0a0f1c] to-[#111827]">
+
+    <p className="text-3xl font-semibold mb-6">
+      Oops! No Users in Feed
     </p>
-      <Link to={"/game"}>
-      <button className="px-3 py-3 w-30  bg-black text-white rounded-md">Expore Our Game</button></Link>
-    </div>
-  );
+
+    <Link to={"/game"}>
+      <button className="px-6 py-3 
+                         bg-gradient-to-r from-blue-600 to-purple-600 
+                         hover:from-blue-500 hover:to-purple-500 
+                         transition rounded-lg shadow-lg">
+        Explore Our Game
+      </button>
+    </Link>
+  </div>
+);
 }
 
 export default Feed;
