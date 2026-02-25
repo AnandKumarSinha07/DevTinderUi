@@ -1,8 +1,7 @@
-const BASE_URL = import.meta.env.MODE === "development" 
-  ? import.meta.env.VITE_API_BASE_URL 
-  : import.meta.env.VITE_API_PRODUCTION_URL;
 
-export { BASE_URL };  // <- add this line
+const BASE_URL = "https://devtinder-aiy3.onrender.com";  
+
+export { BASE_URL };
 
 export const LOGIN_URL = `${BASE_URL}/login`;
 export const PROFILE_URL = `${BASE_URL}/profile/view`;
