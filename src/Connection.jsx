@@ -3,6 +3,8 @@ import axios from "axios";
 import { addConnection } from "./utils/connectionSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { USER_CONNECTION } from "./utils/constant";
+import { Link } from "react-router-dom";
+
 
 
 
@@ -66,7 +68,7 @@ const Connection = () => {
     <div className="flex flex-col justify-center items-center my-10 space-y-2">
       <h1 className="font-bold text-3xl text-white mb-6">Connection Details</h1>
       {connection.map((connection, index) => {
-        const { firstName, lastName, age, gender, about } = connection;
+        const { firstName, lastName, age, gender, about,_id } = connection;
         return (
           <div
             key={index}
@@ -87,9 +89,16 @@ const Connection = () => {
             <p className="text-lg text-gray-700">
               <strong className="text-gray-900">About:</strong> {about}
             </p>
+
+            <div className="flex flex-row">
+               <Link to={"/chat/"+_id}><button className="bg-black  px-8 py-2 text-white">Chat</button></Link> 
+            </div>
+           
           </div>
         );
+
       })}
+     
     </div>
   );
 };

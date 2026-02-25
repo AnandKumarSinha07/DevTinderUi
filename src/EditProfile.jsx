@@ -37,6 +37,9 @@ const EditProfile = ({ user }) => {
         },
         { withCredentials: true }
       );
+       if(age<18){
+        setError("Please Enter age more than 18")
+       }
 
       console.log("Answer is ", res.data.data);
       dispatch(addUser(res?.data?.data));

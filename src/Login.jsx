@@ -3,7 +3,8 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addUser } from "./utils/userSlice";
 import { useNavigate } from "react-router-dom";
-import { LOGIN_URL, SIGNUP } from "./utils/constant";
+import { BASE_URL,LOGIN_URL ,SIGNUP} from "./utils/constant";
+
 
 function Login() {
   const [email, SetEmail] = useState("");
@@ -20,6 +21,10 @@ function Login() {
 
   const handleLogin = async () => {
     try {
+
+      if(email=='' || password==''){
+        return setError("Please Enter Details!!")
+      }
       const res = await axios.post(LOGIN_URL,
         {
           email,
@@ -28,6 +33,7 @@ function Login() {
         { withCredentials: true }
       );
       dispatch(addUser(res.data));
+      
       navigate("/");
     } catch (err) {
       console.log("Error inside the handleLogin", err);
@@ -98,7 +104,7 @@ function Login() {
             onChange={(e) => setPassword(e.target.value)}
           />
 
-          {error && <p className="text-red-500 ml-1">{error}</p>}
+          {error && <p className="text-red-500 ml-1 text-xl">{error}</p>}
           <p
             className="cursor-pointer text-lg hover"
             onClick={()=>setislogedin(value=>!value)}

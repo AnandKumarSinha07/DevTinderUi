@@ -28,10 +28,10 @@ function Navbar() {
 
 
   return (
-    <div className="navbar bg-info-content w-[100%]">
+    <div className="navbar bg-info-content w-[100%] ">
 
       <div className="flex-1">
-        <Link to={'/'}   className="btn btn-ghost text-xl">DevTinder</Link>
+        <Link to={'/'} className="btn text-xl  hover:text-white ml-1 p-2 text-white">DevTinder</Link>
       </div>
 
         {user &&<div className="flex-none gap-2">
@@ -74,6 +74,8 @@ function Navbar() {
             <li>
               <a onClick={handleLogout}>Logout</a>
             </li>
+
+            
 
           </ul>
         </div>
