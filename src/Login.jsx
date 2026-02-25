@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addUser } from "./utils/userSlice";
 import { useNavigate } from "react-router-dom";
-import { BASE_URL,LOGIN_URL ,SIGNUP} from "./utils/constant";
+import {LOGIN_URL ,SIGNUP} from "./utils/constant";
 
 
 function Login() {
