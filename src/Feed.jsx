@@ -5,7 +5,7 @@ import { addFeed } from "./utils/feedSlice";
 import { useEffect } from "react";
 import UserCard from "./UserCard";
 import { FEED_URL } from "./utils/constant";
-import { Link } from "react-router-dom";
+
 
 
 
@@ -41,12 +41,12 @@ function Feed() {
   <div className="flex flex-col items-center justify-center 
                   min-h-[70vh] 
                   text-white 
-                  bg-gradient-to-br from-black via-[#0a0f1c] to-[#111827]">
+                  ">
 
     
 
     <div className="flex gap-3  items-center justify-center">
-        <h1 className="text-3xl  text-white">Loading.....</h1>
+        <h1 className="text-3xl  text-white">Oops No User On the Feed.....</h1>
         <span className="loading loading-ring loading-xs"></span>
         <span className="loading loading-ring loading-sm"></span>
         <span className="loading loading-ring loading-md"></span>
