@@ -46,7 +46,7 @@ function Feed() {
     
 
     <div className="flex gap-3  items-center justify-center">
-        <h1 className="text-3xl  text-white">Oops No User On the Feed.....</h1>
+        <h1 className="text-3xl  text-white">Oops No User On the Feed Load.....</h1>
         <span className="loading loading-ring loading-xs"></span>
         <span className="loading loading-ring loading-sm"></span>
         <span className="loading loading-ring loading-md"></span>

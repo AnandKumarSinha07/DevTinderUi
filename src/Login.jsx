@@ -108,7 +108,7 @@ function Login() {
             <input
               type="text"
               placeholder="Enter last name"
-              className="w-full bg-white text-white border border-gray-100 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full bg-[#1e293b] text-white border border-gray-100 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
               value={LastName}
               onChange={(e) => setLastName(e.target.value)}
             />
