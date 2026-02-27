@@ -22,7 +22,7 @@ const Connection = () => {
     }
   };
 
-  console.log("connection is ", connection);
+ // console.log("connection is ", connection);
 
   useEffect(() => {
     FetConnection();

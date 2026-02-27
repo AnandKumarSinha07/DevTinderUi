@@ -28,15 +28,14 @@ const Request = () => {
           dispatch(removeRequest(_id))
       }
       catch(err){
-        console.log("Error in the api of review post request",err)
-       
+        console.log("Error in the api of review post request",err)       
       }
   }
 
   const FetchRequest = async () => {
     try {
       const res = await axios.get(REQUEST_RECEIVED, { withCredentials: true });
-      console.log("API response:", res?.data?.findConnection);
+      //console.log("API response:", res?.data?.findConnection);
       dispatch(addRequest(res?.data?.findConnection)); 
     } catch (err) {
       console.log(err);

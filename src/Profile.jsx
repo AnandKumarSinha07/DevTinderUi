@@ -7,7 +7,7 @@ function Profile() {
 
   return (
     user && (
-      <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-gray-800 flex items-center justify-center p-6">
+      <div className="min-h-screen flex items-center justify-center p-6">
         <EditProfile user={user} />
       </div>
     )

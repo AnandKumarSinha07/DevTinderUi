@@ -40,7 +40,7 @@ function Body() {
 
 
   return (
-  <div className="min-h-screen flex flex-col bg-gradient-to-br from-black via-[#020000] to-[#0a0000] text-white">
+  <div className="min-h-screen flex flex-col bg-gradient-to-br from-black via-[#293e54] to-[#d2e1ef] text-white">
     <Navbar />
     <main className="flex-1 pt-16">
       <Outlet />

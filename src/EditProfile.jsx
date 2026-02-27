@@ -126,7 +126,7 @@ const EditProfile = ({ user }) => {
       <button
         onClick={handleEdit}
         className="w-full py-3 rounded-xl font-semibold text-lg 
-        bg-gradient-to-r from-black via-gray-600 to-white 
+       bg-black via-gray-600 to-white 
        text-white hover:opacity-90 transition duration-300 shadow-lg shadow-gray-500/30"
        >
         Save Changes ✨

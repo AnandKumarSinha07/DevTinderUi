@@ -19,7 +19,7 @@ function Feed() {
     try {
       const res = await axios.get(FEED_URL, { withCredentials: true });
       dispatch(addFeed(res.data)); 
-      console.log("user feed is ",res.data)
+      //console.log("user feed is ",res.data)
     } catch (err) {
       console.log("Error in the FeedData: ", err);
     }
@@ -32,7 +32,6 @@ function Feed() {
  return feed.length > 0 ? (
   <div className="flex justify-center items-center 
                   min-h-[70vh] 
-                  bg-gradient-to-br from-black via-[#0a0f1c] to-[#111827] 
                   px-4">
 
     <UserCard data={feed[0]} />
@@ -44,18 +43,16 @@ function Feed() {
                   text-white 
                   bg-gradient-to-br from-black via-[#0a0f1c] to-[#111827]">
 
-    <p className="text-3xl font-semibold mb-6">
-      Oops! No Users in Feed
-    </p>
+    
 
-    <Link to={"/game"}>
-      <button className="px-6 py-3 
-                         bg-gradient-to-r from-blue-600 to-purple-600 
-                         hover:from-blue-500 hover:to-purple-500 
-                         transition rounded-lg shadow-lg">
-        Explore Our Game
-      </button>
-    </Link>
+    <div className="flex gap-3  items-center justify-center">
+        <h1 className="text-3xl  text-white">Loading.....</h1>
+        <span className="loading loading-ring loading-xs"></span>
+        <span className="loading loading-ring loading-sm"></span>
+        <span className="loading loading-ring loading-md"></span>
+        <span className="loading loading-ring loading-lg"></span>
+      </div>
+
   </div>
 );
 }

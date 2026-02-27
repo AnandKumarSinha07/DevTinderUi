@@ -8,7 +8,7 @@ import { ToastContainer,toast } from "react-toastify";
 
 const UserCard = ({ data }) => {
 
-    console.log("data in the usercard is ",data)
+    //console.log("data in the usercard is ",data)
     const { firstName, lastName, about,  age, gender,_id,profile} = data;
     
     const dispatch=useDispatch();

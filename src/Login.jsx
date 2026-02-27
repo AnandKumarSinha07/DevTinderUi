@@ -4,7 +4,8 @@ import { useDispatch } from "react-redux";
 import { addUser } from "./utils/userSlice";
 import { useNavigate } from "react-router-dom";
 import {LOGIN_URL ,SIGNUP} from "./utils/constant";
-
+import { BiHide } from "react-icons/bi";
+import { BiShow } from "react-icons/bi";
 
 function Login() {
   const [email, SetEmail] = useState("");
@@ -13,11 +14,22 @@ function Login() {
   const [LastName,setLastName]=useState('');
   const [isLogedin,setislogedin]=useState(true);
   const [error, setError] = useState("");
-  
+  const [showPassowrd,setShowPassword] = useState(false);
 
   
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const checkPassword=()=>{
+       if(password.length>0){
+         alert("ok")
+         showPassowrd(true)
+       }
+       else{
+          alert("no ok")
+          showPassowrd(false);
+       }
+  }
 
   const handleLogin = async () => {
     try {
@@ -56,8 +68,9 @@ function Login() {
     }
   }
 
+  
   return (
-  <div className="min-h-screen flex items-center justify-center bg-black px-4">
+  <div className="min-h-screen flex items-center justify-center px-4">
     <div className="w-full max-w-md bg-[#010408ab] border border-gray-800 rounded-2xl p-8 shadow-2xl">
       
       {/* Heading */}
@@ -95,7 +108,7 @@ function Login() {
             <input
               type="text"
               placeholder="Enter last name"
-              className="w-full bg-[#1e293b] text-white border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full bg-white text-white border border-gray-100 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
               value={LastName}
               onChange={(e) => setLastName(e.target.value)}
             />
@@ -132,7 +145,9 @@ function Login() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
+       
       </div>
+       
 
       {/* Error */}
       {error && (
@@ -169,7 +184,7 @@ function Login() {
         ) : (
           <>
             Already have an account?{" "}
-            <span className="text-blue-500 hover:underline">
+            <span className="text-blue-500 hover:underline text-2xl">
               Sign In
             </span>
           </>

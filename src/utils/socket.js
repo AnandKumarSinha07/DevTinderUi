@@ -3,5 +3,8 @@ import { BASE_URL } from "./constant";
 
 
 export const createSocketConnection = () => {
-  return io(BASE_URL);
+  return io(BASE_URL, {
+    withCredentials: true,
+    transports: ["websocket", "polling"],
+  });
 };
