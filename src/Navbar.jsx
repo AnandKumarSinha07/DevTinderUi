@@ -25,7 +25,6 @@ function Navbar() {
   }
 
 
-
   return (
     <div className="navbar bg-info-content w-[100%] ">
 
@@ -46,7 +45,7 @@ function Navbar() {
           
             <div className="w-10 rounded-full">
               <img
-                alt="Tailwind CSS Navbar component"
+                alt="Profile component"
                 src={user.profile}
               />
             </div>
